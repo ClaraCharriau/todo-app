@@ -8,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TaskCreationComponent } from './pages/task-creation/task-creation.component';
 import { HistoryComponent } from './pages/history/history.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HistoryComponent } from './pages/history/history.component';
     HomeComponent,
     NavbarComponent,
     TaskCreationComponent,
-    HistoryComponent
+    HistoryComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
