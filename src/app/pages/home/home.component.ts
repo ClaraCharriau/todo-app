@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TaskService } from 'src/app/services/task/task.service';
+import { Task } from 'src/app/task';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +8,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+
+  todoList: Task[] = [];
+
+  nonUrgentTaskExists: boolean = false;
+  urgentTaskExists: boolean = false;
+
+  constructor(private taskService: TaskService) {}
+
+  ngOnInit() {
+    this.todoList = this.taskService.getToDos();
+    this.checkTasksPriority();
+  }
+
+  checkTasksPriority() {
+    let todoList: Task[] = this.taskService.getToDos();
+
+    if(todoList.length > 0 && todoList.map(item => item.isUrgent).includes(true)) {
+      this.urgentTaskExists = true;
+    }
+    if(todoList.length > 0 && todoList.map(item => item.isUrgent).includes(false)) {
+      this.nonUrgentTaskExists = true;
+    }
+  }
+
+
 
 }
