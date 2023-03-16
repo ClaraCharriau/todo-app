@@ -6,7 +6,8 @@
         <ng-container *ngFor="let task of todoList">
             <li *ngIf="task.isUrgent">
                 <button (click)="setTaskAsDone(task)">Fait</button>
-                {{task.content}}</li>
+                {{task.content}}
+            </li>
         </ng-container>
     </ul>
 
@@ -16,7 +17,8 @@
         <ng-container *ngFor="let task of todoList">
             <li *ngIf="!task.isUrgent">
                 <button (click)="setTaskAsDone(task)">Fait</button>
-                {{task.content}}</li>
+                {{task.content}}
+            </li>
         </ng-container>
     </ul>
 
@@ -24,7 +26,9 @@
 
 <ng-template #emptyToDoList>
 
-    <p>Aucune tâche pour le moment 🙌</p>
-    <a routerLink="/new-task">Créer une tâche</a>
+    <section>
+        <p>Aucune tâche pour le moment 🙌</p>
+        <a routerLink="/new-task">Créer une tâche</a>
+    </section>
 
 </ng-template>
