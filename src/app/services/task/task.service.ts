@@ -28,6 +28,23 @@ export class TaskService {
     currentTask.isUrgent = isUrgent;
   }
 
+  setAsDone(currentTask: Task) {
+
+    const toDoList: Task[] = this.getToDos();
+    const id = currentTask.id;
+  
+    const taskToFind = toDoList.find(task => task.id === id);
+
+    let index: number;
+    taskToFind ? index = toDoList?.indexOf(taskToFind) : index = -1;
+    
+    currentTask.doneDate = new Date();
+
+    toDoList.splice(index, 1);
+    toDoList.push(currentTask);
+    this.saveToDos(toDoList);
+  }
+
   // LocalStorage
   createToDoStorage() {
     const toDoStorage = JSON.stringify([]);
@@ -44,18 +61,25 @@ export class TaskService {
     }
   }
 
-  saveToDos(tasks: Task[]) {
+  generateId(): number {
+    const toDoList = this.getToDos();
+    return toDoList.length > 0 ? toDoList.length + 1 : 1;
+  }
+
+  saveToDos(tasks: Task[]): void {
     localStorage.setItem('todo', JSON.stringify(tasks))
   }
 
-  addToList(newTask: Task) {
+  addToList(newTask: Task): void {
+    newTask.id = this.generateId();
     const toDoList = this.getToDos();
     toDoList.push(newTask);
     this.saveToDos(toDoList);
   }
 
-
-
-
+  getTaskById(id: number): Task {
+    const toDoList = this.getToDos();
+    return toDoList.find((task: { id: number; }) => task.id === id)
+  }
 
 }

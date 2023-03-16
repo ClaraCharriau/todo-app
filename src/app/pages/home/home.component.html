@@ -1,11 +1,30 @@
 <section *ngIf="todoList.length > 0; else emptyToDoList">
 
-<ul *ngFor="let task of todoList">
-    <li>{{task.content}}</li>
-</ul>
+    <!-- Tâches urgentes -->
+    <p *ngIf="this.urgentTaskExists">⚠️ Tâches urgentes</p>
+    <ul>
+        <ng-container *ngFor="let task of todoList">
+            <li *ngIf="task.isUrgent">
+                <button (click)="setTaskAsDone(task)">Fait</button>
+                {{task.content}}</li>
+        </ng-container>
+    </ul>
+
+    <!-- Tâches non-urgentes -->
+    <p *ngIf="this.nonUrgentTaskExists">🌸 Autres tâches</p>
+    <ul>
+        <ng-container *ngFor="let task of todoList">
+            <li *ngIf="!task.isUrgent">
+                <button (click)="setTaskAsDone(task)">Fait</button>
+                {{task.content}}</li>
+        </ng-container>
+    </ul>
 
 </section>
 
 <ng-template #emptyToDoList>
-    
+
+    <p>Aucune tâche pour le moment 🙌</p>
+    <a routerLink="/new-task">Créer une tâche</a>
+
 </ng-template>
