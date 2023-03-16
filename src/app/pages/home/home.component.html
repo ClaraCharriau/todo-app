@@ -4,7 +4,9 @@
     <p *ngIf="this.urgentTaskExists">⚠️ Tâches urgentes</p>
     <ul>
         <ng-container *ngFor="let task of todoList">
-        <li *ngIf="task.isUrgent">{{task.content}}</li>
+            <li *ngIf="task.isUrgent">
+                <button (click)="setTaskAsDone(task)">Fait</button>
+                {{task.content}}</li>
         </ng-container>
     </ul>
 
@@ -12,8 +14,10 @@
     <p *ngIf="this.nonUrgentTaskExists">🌸 Autres tâches</p>
     <ul>
         <ng-container *ngFor="let task of todoList">
-            <li *ngIf="!task.isUrgent">{{task.content}}</li>
-            </ng-container>
+            <li *ngIf="!task.isUrgent">
+                <button (click)="setTaskAsDone(task)">Fait</button>
+                {{task.content}}</li>
+        </ng-container>
     </ul>
 
 </section>
