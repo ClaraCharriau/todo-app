@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { TaskService } from 'src/app/services/task/task.service';
 import { Task } from 'src/app/task';
 
@@ -13,7 +14,7 @@ categoryType: string[] = ["shopping", "health", "work", "bills", "cleaning", "ot
 
 currentTask?: Task;
 
-constructor(private taskService: TaskService) {}
+constructor(private taskService: TaskService, private route: Router) {}
 
 ngOnInit() {
   this.createNewTask();
@@ -26,6 +27,7 @@ createNewTask() {
 
 validateTask() {
   this.taskService.addToList(this.currentTask!);
+  this.route.navigate(['/']);
 }
 
 chooseCategory(category: string) {
