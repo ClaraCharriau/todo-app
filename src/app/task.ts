@@ -1,9 +1,9 @@
-type CategoryType = "shopping" | "health" | "work" | "bills" | "cleaning" | "other";
+export type CategoryType = "shopping" | "health" | "work" | "bills" | "cleaning" | "other";
 
 export interface Task {
-    id: number;
+    id?: number;
     content: string;
-    category: CategoryType;
+    category?: CategoryType | null;
     isUrgent: boolean;
     doneDate: Date | null;
 }
