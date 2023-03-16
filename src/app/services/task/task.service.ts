@@ -28,6 +28,8 @@ export class TaskService {
     currentTask.isUrgent = isUrgent;
   }
 
+
+  // DONE
   setAsDone(currentTask: Task) {
 
     const toDoList: Task[] = this.getToDos();
@@ -39,6 +41,24 @@ export class TaskService {
     taskToFind ? index = toDoList?.indexOf(taskToFind) : index = -1;
     
     currentTask.doneDate = new Date();
+
+    toDoList.splice(index, 1);
+    toDoList.push(currentTask);
+    this.saveToDos(toDoList);
+  }
+
+  // UNDONE
+  setAsUndone(currentTask: Task) {
+
+    const toDoList: Task[] = this.getToDos();
+    const id = currentTask.id;
+  
+    const taskToFind = toDoList.find(task => task.id === id);
+
+    let index: number;
+    taskToFind ? index = toDoList?.indexOf(taskToFind) : index = -1;
+    
+    currentTask.doneDate = null;
 
     toDoList.splice(index, 1);
     toDoList.push(currentTask);
