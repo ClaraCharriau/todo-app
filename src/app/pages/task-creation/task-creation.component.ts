@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class TaskCreationComponent {
 
+  categoryType: string[] = ["shopping", "health", "work", "bills", "cleaning", "other"];
+
 }
