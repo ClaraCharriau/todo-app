@@ -1,7 +1,7 @@
 <form>
     <!-- CATEGORIES -->
     <fieldset>
-        <legend>Sélectionner votre categorie :</legend>
+        <legend>Sélectionner votre catégorie :</legend>
         <div class="all-categories-input">
         <div *ngFor="let category of categoryType">
             <input type="radio" id="{{category}}" value="{{category}}" name="category" (click)="chooseCategory(category)">
