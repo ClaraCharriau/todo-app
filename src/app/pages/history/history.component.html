@@ -1,1 +1,21 @@
-<p>history works!</p>
+<section *ngIf="historyList.length > 0; else emptyHistoryList">
+
+    <!-- Toutes les tâches -->
+    <p>Historique des tâches</p>
+    <ul *ngFor="let task of historyList.slice().reverse()">
+            <li>
+                <button (click)="setTaskUndone(task)">Remettre</button>
+                {{task.content}}
+            </li>
+    </ul>
+
+</section>
+
+<ng-template #emptyHistoryList>
+
+    <section>
+        <p>Votre historique est vide 😬</p>
+        <a routerLink="/new-task">Créer une tâche</a>
+    </section>
+
+</ng-template>
