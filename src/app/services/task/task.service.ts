@@ -28,6 +28,10 @@ export class TaskService {
     currentTask.isUrgent = isUrgent;
   }
 
+  changeTaskContent(currentTask: Task, newContent: string): void {
+    currentTask.content = newContent;
+  }
+
 
   // DONE
   setAsDone(currentTask: Task) {
@@ -63,6 +67,22 @@ export class TaskService {
     toDoList.splice(index, 1);
     toDoList.push(currentTask);
     this.saveToDos(toDoList);
+  }
+
+  // UPDATE TASK
+  updateTask(currentTask: Task) {
+    const toDoList: Task[] = this.getToDos();
+    const id = currentTask.id;
+  
+    const taskToFind = toDoList.find(task => task.id === id);
+
+    let index: number;
+    taskToFind ? index = toDoList?.indexOf(taskToFind) : index = -1;
+
+    toDoList.splice(index, 1);
+    toDoList.push(currentTask);
+    this.saveToDos(toDoList);
+
   }
 
   // LocalStorage

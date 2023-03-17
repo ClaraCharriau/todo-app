@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { TaskService } from 'src/app/services/task/task.service';
 import { Task } from 'src/app/task';
 
@@ -8,33 +9,28 @@ import { Task } from 'src/app/task';
   styleUrls: ['./task-creation.component.css']
 })
 export class TaskCreationComponent {
-  
-categoryType: string[] = ["shopping", "health", "work", "bills", "cleaning", "other"];
 
-currentTask?: Task;
+  currentTask?: Task;
 
-constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, private route: Router) { }
 
-ngOnInit() {
-  this.createNewTask();
-  console.log(this.currentTask);
-}
+  ngOnInit() {
+    this.createNewTask();
+    console.log(this.currentTask);
+  }
 
-createNewTask() {
-  this.currentTask = this.taskService.createNewTask();
-}
+  createNewTask() {
+    this.currentTask = this.taskService.createNewTask();
+  }
 
-validateTask() {
-  this.taskService.addToList(this.currentTask!);
-}
+  updateTask(updatedTask: Task) {
+    this.currentTask = updatedTask;
+    console.log(this.currentTask);
+  }
 
-chooseCategory(category: string) {
-  this.taskService.changeTaskCategory(this.currentTask!, category);
-  console.log(this.currentTask);
-}
-
-changePriority() {
-  this.taskService.changeTaskPriority(this.currentTask!);
-}
+  validateTask() {
+    this.taskService.addToList(this.currentTask!);
+    this.route.navigate([""]);
+  }
 
 }
