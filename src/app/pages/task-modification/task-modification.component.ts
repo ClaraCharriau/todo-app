@@ -12,24 +12,35 @@ export class TaskModificationComponent {
 
   currentTask?: Task;
 
-  constructor(private activatedRoute: ActivatedRoute, private taskService: TaskService, private route: Router) {}
+  isFormCompleted: boolean = false;
+
+  constructor(private activatedRoute: ActivatedRoute, private taskService: TaskService, private route: Router) { }
 
   ngOnInit() {
     this.getTask();
   }
 
-  sendUpdateTask() {
-    this.taskService.updateTask(this.currentTask!);
-    this.route.navigate([""]);
+  isCompleted() {
+    if (this.currentTask!.content.length > 0 && this.currentTask?.category !== null) {
+      this.isFormCompleted = true;
+    } else {
+      this.isFormCompleted = false;
+    }
   }
 
   updateTask(updatedTask: Task) {
     this.currentTask = updatedTask;
+    this.isCompleted();
   }
 
   getTask() {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
     this.currentTask = this.taskService.getTaskById(id);
+  }
+
+  sendUpdateTask() {
+    this.taskService.updateTask(this.currentTask!);
+    this.route.navigate([""]);
   }
 
 }
