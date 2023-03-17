@@ -6,7 +6,7 @@ import { CategoryType } from '../task';
 })
 export class CategoryEmojiPipe implements PipeTransform {
 
-  transform(category: CategoryType): string | undefined {
+  transform(category: CategoryType | string): string | undefined {
     let emoji: string | undefined;
     switch(category) {
       case 'shopping':
