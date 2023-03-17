@@ -1,6 +1,8 @@
 section {
     margin-top: 110px;
     padding: 0 26px;
+    height: 75vh;
+    overflow-y: scroll;
 }
 
 button {
