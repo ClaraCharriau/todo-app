@@ -1,27 +1,5 @@
-<form>
-    <!-- CATEGORIES -->
-    <fieldset>
-        <legend>Sélectionner votre catégorie :</legend>
-        <div class="all-categories-input">
-        <div *ngFor="let category of categoryType">
-            <input type="radio" id="{{category}}" value="{{category}}" name="category" (click)="chooseCategory(category)">
-            <label name="category" for="{{category}}">{{category}}</label>
-        </div>
-        </div>
-    </fieldset>
+<section>
+<app-task-form [currentTask]="currentTask" (updateTask)="updateTask($event)"></app-task-form>
 
-    <!-- TASK DESCRIPTION -->
-    <div>
-    <label for="content">Quelle tâche avez-vous à effectuer ?</label>
-    <input id="content"  type="text" for="content" name="content" [(ngModel)]="currentTask!.content" placeholder="Exemple: Faire les courses" required>
-    </div>
-
-    <!-- URGENT -->
-    <div>
-    <input type="checkbox" for="urgent" (click)="changePriority()">
-    <label class="urgent-label" for="urgent">La tâche est urgente</label>
-    </div>
-
-    <button (click)="validateTask()" type="submit">Valider ma tâche</button>
-
-</form>
+<button (click)="validateTask()" type="submit">Valider ma tâche</button>
+</section>

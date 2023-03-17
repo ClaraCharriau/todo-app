@@ -28,6 +28,10 @@ export class TaskService {
     currentTask.isUrgent = isUrgent;
   }
 
+  changeTaskContent(currentTask: Task, newContent: string): void {
+    currentTask.content = newContent;
+  }
+
 
   // DONE
   setAsDone(currentTask: Task) {

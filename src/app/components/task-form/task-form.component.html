@@ -1,0 +1,26 @@
+<form>
+    <!-- CATEGORIES -->
+    <fieldset>
+        <legend>Sélectionnez votre catégorie :</legend>
+        <div class="all-categories-input">
+            <div *ngFor="let category of categoryType">
+                <input name="category" type="radio" id="{{category}}" (click)="chooseCategory(category)">
+                <label name="category" for="{{category}}">{{category}}</label>
+            </div>
+        </div>
+    </fieldset>
+
+    <!-- TASK DESCRIPTION -->
+    <div>
+        <label for="content">Quelle tâche avez-vous à effectuer ?</label>
+        <input id="content" type="text" for="content" name="content" placeholder="Exemple: Faire les courses" required
+            [ngModel]="currentTask?.content" (ngModelChange)="updateContent($event)">
+    </div>
+
+    <!-- URGENT -->
+    <div>
+        <input type="checkbox" for="urgent" (click)="changePriority()">
+        <label class="urgent-label" for="urgent">La tâche est urgente</label>
+    </div>
+
+</form>

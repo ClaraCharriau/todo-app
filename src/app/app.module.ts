@@ -10,6 +10,8 @@ import { TaskCreationComponent } from './pages/task-creation/task-creation.compo
 import { HistoryComponent } from './pages/history/history.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
+import { TaskModificationComponent } from './pages/task-modification/task-modification.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     TaskCreationComponent,
     HistoryComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TaskModificationComponent,
+    TaskFormComponent
   ],
   imports: [
     BrowserModule,
