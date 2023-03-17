@@ -38,6 +38,7 @@ export class HomeComponent {
     this.taskService.setAsDone(task);
     this.todoList = this.getToDoList();
     this.checkTasksPriority();
+    this.ngOnInit();
   }
 
 }
