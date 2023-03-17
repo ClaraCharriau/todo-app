@@ -12,7 +12,7 @@ export class TaskCreationComponent {
 
   currentTask?: Task;
 
-constructor(private taskService: TaskService, private route: Router) {}
+  constructor(private taskService: TaskService, private route: Router) { }
 
   ngOnInit() {
     this.createNewTask();
@@ -21,20 +21,14 @@ constructor(private taskService: TaskService, private route: Router) {}
   createNewTask() {
     this.currentTask = this.taskService.createNewTask();
   }
-  
 
-validateTask() {
-  this.taskService.addToList(this.currentTask!);
-  this.route.navigate(['/']);
-}
+  updateTask(updatedTask: Task) {
+    this.currentTask = updatedTask;
+  }
 
-chooseCategory(category: string) {
-  this.taskService.changeTaskCategory(this.currentTask!, category);
-  console.log(this.currentTask);
-}
-
-changePriority() {
-  this.taskService.changeTaskPriority(this.currentTask!);
-}
+  validateTask() {
+    this.taskService.addToList(this.currentTask!);
+    this.route.navigate([""]);
+  }
 
 }

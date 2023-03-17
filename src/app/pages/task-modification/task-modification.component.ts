@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from 'src/app/services/task/task.service';
 import { Task } from 'src/app/task';
 
@@ -12,7 +12,7 @@ export class TaskModificationComponent {
 
   currentTask?: Task;
 
-  constructor(private activatedRoute: ActivatedRoute, private taskService: TaskService) {}
+  constructor(private activatedRoute: ActivatedRoute, private taskService: TaskService, private route: Router) {}
 
   ngOnInit() {
     this.getTask();
@@ -20,6 +20,7 @@ export class TaskModificationComponent {
 
   sendUpdateTask() {
     this.taskService.updateTask(this.currentTask!);
+    this.route.navigate([""]);
   }
 
   updateTask(updatedTask: Task) {
