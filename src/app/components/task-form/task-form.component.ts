@@ -17,6 +17,10 @@ export class TaskFormComponent {
 
   constructor(private taskService: TaskService) { }
 
+  ngOnInit() {
+    console.log(this.currentTask);
+  }
+
   updateContent(value: string): void {
     this.taskService.changeTaskContent(this.currentTask!, value)
     this.updateTask.emit(this.currentTask);

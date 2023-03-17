@@ -1,3 +1,5 @@
-<app-task-form></app-task-form>
+<section>
+<app-task-form [currentTask]="currentTask" (updateTask)="updateTask($event)"></app-task-form>
 
-<button (click)="modifTask()" type="submit">Valider ma tâche</button>
+<button (click)="sendUpdateTask()" type="submit">Modifier ma tâche</button>
+</section>

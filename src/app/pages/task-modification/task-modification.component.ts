@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TaskService } from 'src/app/services/task/task.service';
+import { Task } from 'src/app/task';
 
 @Component({
   selector: 'app-task-modification',
@@ -7,8 +10,26 @@ import { Component } from '@angular/core';
 })
 export class TaskModificationComponent {
 
-  modifTask() {
-    console.log("hey");
+  currentTask?: Task;
+
+  constructor(private activatedRoute: ActivatedRoute, private taskService: TaskService) {}
+
+  ngOnInit() {
+    this.getTask();
+  }
+
+  sendUpdateTask() {
+    this.taskService.updateTask(this.currentTask!);
+  }
+
+  updateTask(updatedTask: Task) {
+    this.currentTask = updatedTask;
+    console.log(this.currentTask);
+  }
+
+  getTask() {
+    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.currentTask = this.taskService.getTaskById(id);
   }
 
 }

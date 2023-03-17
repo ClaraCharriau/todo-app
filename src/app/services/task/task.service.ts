@@ -69,6 +69,22 @@ export class TaskService {
     this.saveToDos(toDoList);
   }
 
+  // UPDATE TASK
+  updateTask(currentTask: Task) {
+    const toDoList: Task[] = this.getToDos();
+    const id = currentTask.id;
+  
+    const taskToFind = toDoList.find(task => task.id === id);
+
+    let index: number;
+    taskToFind ? index = toDoList?.indexOf(taskToFind) : index = -1;
+
+    toDoList.splice(index, 1);
+    toDoList.push(currentTask);
+    this.saveToDos(toDoList);
+
+  }
+
   // LocalStorage
   createToDoStorage() {
     const toDoStorage = JSON.stringify([]);
