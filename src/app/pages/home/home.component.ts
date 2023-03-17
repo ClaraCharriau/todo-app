@@ -18,18 +18,18 @@ export class HomeComponent {
 
   ngOnInit() {
     this.todoList = this.getToDoList();
-    this.checkTasksPriority();
+    this.checkTasksPriority(this.todoList);
   }
 
   getToDoList(): Task[] {
     return this.taskService.getUnDoneTasks();
   }
 
-  checkTasksPriority() {
-    if(this.todoList.length > 0 && this.todoList.map(item => item.isUrgent).includes(true)) {
+  checkTasksPriority(todoList: Task[]) {
+    if(todoList.length > 0 && todoList.map(item => item.isUrgent).includes(true)) {
       this.urgentTaskExists = true;
     }
-    if(this.todoList.length > 0 && this.todoList.map(item => item.isUrgent).includes(false)) {
+    if(todoList.length > 0 && todoList.map(item => item.isUrgent).includes(false)) {
       this.nonUrgentTaskExists = true;
     }
   }
@@ -37,7 +37,7 @@ export class HomeComponent {
   setTaskAsDone(task: Task) {
     this.taskService.setAsDone(task);
     this.todoList = this.getToDoList();
-    this.checkTasksPriority();
+    this.checkTasksPriority(this.todoList);
     this.ngOnInit();
   }
 
