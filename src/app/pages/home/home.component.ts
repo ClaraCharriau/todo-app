@@ -22,9 +22,7 @@ export class HomeComponent {
   }
 
   getToDoList(): Task[] {
-    const allTasks = this.taskService.getToDos();
-    const filterTasks = allTasks.filter((task: { doneDate: null; }) => task.doneDate === null);
-    return filterTasks;
+    return this.taskService.getUnDoneTasks();
   }
 
   checkTasksPriority() {

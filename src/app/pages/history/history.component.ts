@@ -18,9 +18,7 @@ export class HistoryComponent {
   }
 
   getToDoList(): Task[] {
-    const allTasks = this.taskService.getToDos();
-    const filterTasks = allTasks.filter((task: { doneDate: null; }) => task.doneDate !== null);
-    return filterTasks;
+    return this.taskService.getDoneTasks();
   }
 
   setTaskUndone(task: Task) {
