@@ -6,7 +6,7 @@
         <ng-container *ngFor="let task of todoList">
             <li *ngIf="task.isUrgent">
                 <button (click)="setTaskAsDone(task)">Fait</button>
-                {{task.content}}
+                <a routerLink="/update-task/{{task.id}}">{{task.content}}</a>
             </li>
         </ng-container>
     </ul>
@@ -17,7 +17,7 @@
         <ng-container *ngFor="let task of todoList">
             <li *ngIf="!task.isUrgent">
                 <button (click)="setTaskAsDone(task)">Fait</button>
-                {{task.content}}
+                <a routerLink="/update-task/{{task.id}}">{{task.content}}</a>
             </li>
         </ng-container>
     </ul>
