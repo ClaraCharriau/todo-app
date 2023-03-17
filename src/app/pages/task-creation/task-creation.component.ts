@@ -12,10 +12,20 @@ export class TaskCreationComponent {
 
   currentTask?: Task;
 
+  isFormCompleted: boolean = false;
+
   constructor(private taskService: TaskService, private route: Router) { }
 
   ngOnInit() {
     this.createNewTask();
+  }
+
+  isCompleted() {
+    if(this.currentTask!.content.length > 0 && this.currentTask?.category !== null) {
+      this.isFormCompleted = true;
+    } else {
+      this.isFormCompleted = false;
+    }
   }
 
   createNewTask() {
@@ -24,6 +34,7 @@ export class TaskCreationComponent {
 
   updateTask(updatedTask: Task) {
     this.currentTask = updatedTask;
+    this.isCompleted();
   }
 
   validateTask() {

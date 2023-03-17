@@ -1,26 +1,27 @@
 <form>
     <!-- CATEGORIES -->
-    <fieldset>
-        <legend>Sélectionnez votre catégorie :</legend>
+    <div>
+        <p>Sélectionnez votre catégorie :</p>
         <div class="all-categories-input">
-            <div *ngFor="let category of categoryType">
-                <input name="category" type="radio" id="{{category}}" (click)="chooseCategory(category)" [checked]="category === currentTask?.category">
-                <label name="category" for="{{category}}">{{category}}</label>
+            <div class="radio-category-container" *ngFor="let category of categoryType">
+                <input class="input-category" name="category" type="radio" id="{{category}}" (click)="chooseCategory(category)" [checked]="category === currentTask?.category">
+                <label class="label-category" name="category" for="{{category}}">{{category | categoryEmoji}}</label>
             </div>
         </div>
-    </fieldset>
+    </div>
 
     <!-- TASK DESCRIPTION -->
     <div>
         <label for="content">Quelle tâche avez-vous à effectuer ?</label>
-        <input id="content" type="text" for="content" name="content" placeholder="Exemple: Faire les courses" required
-            [ngModel]="currentTask?.content" (ngModelChange)="updateContent($event)">
+        <textarea class="input-content" id="content" type="text" for="content" name="content" placeholder="Exemple: Faire les courses" required
+            [ngModel]="currentTask?.content" (ngModelChange)="updateContent($event)"></textarea>
     </div>
 
     <!-- URGENT -->
-    <div>
-        <input type="checkbox" for="urgent" (click)="changePriority()" [checked]="currentTask?.isUrgent">
-        <label class="urgent-label" for="urgent">La tâche est urgente</label>
+    <div class="urgent-container">
+        <input class="priority-input" type="checkbox" for="urgent" (click)="changePriority()" [checked]="currentTask?.isUrgent">
+        <svg class="feather feather-check" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <label class="urgent-label" for="urgent">La tâche est urgente ⚠️</label>
     </div>
 
 </form>
