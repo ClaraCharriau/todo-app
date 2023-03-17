@@ -12,6 +12,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
 import { TaskModificationComponent } from './pages/task-modification/task-modification.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
+import { CategoryEmojiPipe } from './pipes/category-emoji.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TaskFormComponent } from './components/task-form/task-form.component';
     HistoryComponent,
     NotFoundComponent,
     TaskModificationComponent,
-    TaskFormComponent
+    TaskFormComponent,
+    CategoryEmojiPipe
   ],
   imports: [
     BrowserModule,

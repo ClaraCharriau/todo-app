@@ -1,10 +1,13 @@
 <section *ngIf="historyList.length > 0; else emptyHistoryList">
 
     <!-- Toutes les tâches -->
-    <p>Historique des tâches</p>
+    <p>Historique des tâches :</p>
     <ul *ngFor="let task of historyList.slice().reverse()">
             <li>
-                <button (click)="setTaskUndone(task)">Remettre</button>
+                <button (click)="setTaskUndone(task)">
+                    <svg class="feather feather-check" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </button>
+                {{task.category! | categoryEmoji}}
                 {{task.content}}
             </li>
     </ul>
@@ -13,7 +16,7 @@
 
 <ng-template #emptyHistoryList>
 
-    <section>
+    <section class="empty-history">
         <p>Votre historique est vide 😬</p>
         <a class="blue-button" routerLink="/new-task">Créer une tâche</a>
     </section>
