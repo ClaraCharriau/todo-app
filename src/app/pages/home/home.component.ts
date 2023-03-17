@@ -39,6 +39,7 @@ export class HomeComponent {
   setTaskAsDone(task: Task) {
     this.taskService.setAsDone(task);
     this.todoList = this.getToDoList();
+    this.checkTasksPriority();
   }
 
 }
