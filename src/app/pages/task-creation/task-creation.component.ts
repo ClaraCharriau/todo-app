@@ -16,7 +16,6 @@ export class TaskCreationComponent {
 
   ngOnInit() {
     this.createNewTask();
-    console.log(this.currentTask);
   }
 
   createNewTask() {
@@ -25,7 +24,6 @@ export class TaskCreationComponent {
 
   updateTask(updatedTask: Task) {
     this.currentTask = updatedTask;
-    console.log(this.currentTask);
   }
 
   validateTask() {

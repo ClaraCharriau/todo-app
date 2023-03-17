@@ -24,7 +24,6 @@ export class TaskModificationComponent {
 
   updateTask(updatedTask: Task) {
     this.currentTask = updatedTask;
-    console.log(this.currentTask);
   }
 
   getTask() {
