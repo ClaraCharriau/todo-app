@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { TaskModificationComponent } from './pages/task-modification/task-modification.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { CategoryEmojiPipe } from './pipes/category-emoji.pipe';
+import { FilterComponent } from './components/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CategoryEmojiPipe } from './pipes/category-emoji.pipe';
     NotFoundComponent,
     TaskModificationComponent,
     TaskFormComponent,
-    CategoryEmojiPipe
+    CategoryEmojiPipe,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

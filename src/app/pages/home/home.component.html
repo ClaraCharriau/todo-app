@@ -1,4 +1,8 @@
-<section *ngIf="todoList.length > 0; else emptyToDoList">
+<section>
+
+    <app-filter (changeCategory)="filterCategories($event)"></app-filter>
+
+<div *ngIf="todoList.length > 0; else emptyToDoList">
 
     <!-- Tâches urgentes -->
     <p *ngIf="this.urgentTaskExists">⚠️ Tâches urgentes</p>
@@ -28,13 +32,15 @@
         </ng-container>
     </ul>
 
-</section>
+</div>
 
 <ng-template #emptyToDoList >
 
-    <section class="empty-home">
+    <div class="empty-home">
         <p>Aucune tâche pour le moment 🙌</p>
         <a class="blue-button" routerLink="/new-task">Créer une tâche</a>
-    </section>
+    </div>
 
 </ng-template>
+
+</section>
