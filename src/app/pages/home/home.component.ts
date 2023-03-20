@@ -26,12 +26,12 @@ export class HomeComponent {
   }
 
   checkTasksPriority(todoList: Task[]) {
-    if(todoList.length > 0 && todoList.map(item => item.isUrgent).includes(true)) {
+    if(todoList.map(item => item.isUrgent).includes(true)) {
       this.urgentTaskExists = true;
     } else {
       this.urgentTaskExists = false;
     }
-    if(todoList.length > 0 && todoList.map(item => item.isUrgent).includes(false)) {
+    if(todoList.map(item => item.isUrgent).includes(false)) {
       this.nonUrgentTaskExists = true;
     } else {
       this.nonUrgentTaskExists = false;
@@ -42,6 +42,11 @@ export class HomeComponent {
     this.taskService.setAsDone(task);
     this.todoList = this.getToDoList();
     this.checkTasksPriority(this.todoList);
+  }
+
+  filterCategories(tasklist : Task[]) {
+    this.todoList = tasklist;
+    this.checkTasksPriority(this.todoList)
   }
 
 }
