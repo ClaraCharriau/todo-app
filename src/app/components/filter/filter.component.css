@@ -29,7 +29,8 @@ p {
 .all-categories-input {
     display: flex;
     gap: 8px;
-    position: relative
+    position: relative;
+    margin-top: 20px;
 }
 .all {
     font-size: 12px;
