@@ -35,7 +35,7 @@ export class TaskModificationComponent {
 
   getTask() {
     const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-    this.currentTask = this.taskService.getTaskById(id);
+    this.taskService.getTaskById(id).subscribe(currentTask => this.currentTask = currentTask);
   }
 
   sendUpdateTask() {

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TaskService } from 'src/app/services/task/task.service';
 import { Task } from 'src/app/task';
 
@@ -9,7 +10,7 @@ import { Task } from 'src/app/task';
 })
 export class HomeComponent {
 
-  todoList: Task[] = [];
+  todoList!: Task[];
 
   nonUrgentTaskExists: boolean = false;
   urgentTaskExists: boolean = false;
@@ -17,15 +18,17 @@ export class HomeComponent {
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {
-    this.todoList = this.getToDoList();
+    this.taskService.getToDos().subscribe(todoList => this.todoList = todoList);
+    if(!this.todoList) return
     this.checkTasksPriority(this.todoList);
   }
 
-  getToDoList(): Task[] {
-    return this.taskService.getUnDoneTasks();
+  getToDoList() {
+    return this.taskService.getUnDoneTasks().subscribe(todoList => this.todoList = todoList);
   }
 
   checkTasksPriority(todoList: Task[]) {
+    if(!this.todoList) return
     if(todoList.map(item => item.isUrgent).includes(true)) {
       this.urgentTaskExists = true;
     } else {
@@ -40,7 +43,7 @@ export class HomeComponent {
 
   setTaskAsDone(task: Task) {
     this.taskService.setAsDone(task);
-    this.todoList = this.getToDoList();
+    this.taskService.getToDos().subscribe(todoList => this.todoList = todoList);
     this.checkTasksPriority(this.todoList);
   }
 

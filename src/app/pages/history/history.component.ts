@@ -14,16 +14,16 @@ export class HistoryComponent {
   constructor(private taskService: TaskService) { }
 
   ngOnInit() {
-    this.historyList = this.getToDoList();
+    this.taskService.getDoneTasks().subscribe(historyList => this.historyList = historyList);
   }
 
-  getToDoList(): Task[] {
-    return this.taskService.getDoneTasks();
+  getToDoList() {
+    return this.taskService.getDoneTasks().subscribe(historyList => this.historyList = historyList);
   }
 
   setTaskUndone(task: Task) {
     this.taskService.setAsUndone(task);
-    this.historyList = this.getToDoList();
+    this.taskService.getDoneTasks().subscribe(historyList => this.historyList = historyList);
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environments';
 import { TaskService } from './services/task/task.service';
+import { Task } from 'src/app/task';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,14 @@ import { TaskService } from './services/task/task.service';
 })
 export class AppComponent {
   title = environment.title;
+  todoList?: Task[];
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {
     this.taskService.getToDos();
+    this.taskService.getToDos().subscribe((next) => {
+      console.log(next);
+    });
   }
 }

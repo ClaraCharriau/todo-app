@@ -15,6 +15,7 @@ import { TaskModificationComponent } from './pages/task-modification/task-modifi
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { CategoryEmojiPipe } from './pipes/category-emoji.pipe';
 import { FilterComponent } from './components/filter/filter.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FilterComponent } from './components/filter/filter.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule
   ],
   providers: [],
