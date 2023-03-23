@@ -2,7 +2,7 @@
 
     <app-filter (changeCategory)="filterCategories($event)"></app-filter>
 
-<div *ngIf="todoList.length > 0; else emptyToDoList">
+<div class="fade-animation" *ngIf="todoList.length > 0; else emptyToDoList">
 
     <!-- Tâches urgentes -->
     <p *ngIf="this.urgentTaskExists">⚠️ Tâches urgentes</p>
