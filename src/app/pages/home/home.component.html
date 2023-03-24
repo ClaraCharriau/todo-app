@@ -1,33 +1,29 @@
 <section>
 
-<div class="fade-animation" *ngIf="urgentTasks && urgentTasks.length > 0 ; else emptyToDoList">
+<div class="fade-animation" *ngIf="urgentTasks | async ; else emptyToDoList">
 
     <!-- Tâches urgentes -->
-    <p *ngIf="urgentTasks && urgentTasks.length > 0">⚠️ Tâches urgentes</p>
+    <p *ngIf="urgentTasks | async">⚠️ Tâches urgentes</p>
     <ul>
-        <ng-container *ngFor="let task of urgentTasks">
-            <li *ngIf="urgentTasks && urgentTasks.length > 0 && task.isUrgent">
+            <li *ngFor="let task of urgentTasks | async">
                 <button (click)="setTaskAsDone(task)"></button>
                 <a routerLink="/update-task/{{task.id}}">
                     {{task.category! | categoryEmoji}}
                     {{task.content}}
                 </a>
             </li>
-        </ng-container>
     </ul>
 
     <!-- Tâches non-urgentes -->
-    <p *ngIf="nonUrgentTasks && nonUrgentTasks.length > 0">🌸 Autres tâches</p>
+    <p *ngIf="nonUrgentTasks | async">🌸 Autres tâches</p>
     <ul>
-        <ng-container *ngFor="let task of nonUrgentTasks">
-            <li *ngIf="nonUrgentTasks && nonUrgentTasks.length > 0 && !task.isUrgent">
+            <li *ngFor="let task of nonUrgentTasks | async">
                 <button (click)="setTaskAsDone(task)"></button>
                 <a routerLink="/update-task/{{task.id}}">
                     {{task.category! | categoryEmoji}}
                     {{task.content}}
                 </a>
             </li>
-        </ng-container>
     </ul>
 
 </div>

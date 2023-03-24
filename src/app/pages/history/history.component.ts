@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TaskService } from 'src/app/services/task/task.service';
 import { Task } from 'src/app/task';
 
@@ -9,21 +10,20 @@ import { Task } from 'src/app/task';
 })
 export class HistoryComponent {
 
-  historyList: Task[] = [];
+  historyList?: Observable<Task[]>;
 
   constructor(private taskService: TaskService) { }
 
   ngOnInit() {
-    this.taskService.getDoneTasks().subscribe(historyList => this.historyList = historyList);
+    this.historyList = this.getDoneList();
   }
 
-  getToDoList() {
-    return this.taskService.getDoneTasks().subscribe(historyList => this.historyList = historyList);
+  getDoneList() {
+    return this.taskService.getDoneTasks();
   }
 
   setTaskUndone(task: Task) {
     this.taskService.setAsUndone(task);
-    this.taskService.getDoneTasks().subscribe(historyList => this.historyList = historyList);
   }
 
 }

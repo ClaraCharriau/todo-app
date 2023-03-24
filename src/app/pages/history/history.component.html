@@ -1,8 +1,8 @@
-<section *ngIf="historyList.length > 0; else emptyHistoryList">
+<section *ngIf="historyList | async ; else emptyHistoryList">
 
     <!-- Toutes les tâches -->
     <p>Historique des tâches :</p>
-    <ul *ngFor="let task of historyList.slice().reverse()">
+    <ul *ngFor="let task of historyList | async">
             <li>
                 <button (click)="setTaskUndone(task)">
                     <svg class="feather feather-check" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>

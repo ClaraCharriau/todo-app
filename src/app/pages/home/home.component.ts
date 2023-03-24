@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TaskService } from 'src/app/services/task/task.service';
 import { Task } from 'src/app/task';
 
@@ -9,16 +10,22 @@ import { Task } from 'src/app/task';
 })
 export class HomeComponent {
 
-  urgentTasks?: Task[];
-  nonUrgentTasks?: Task[];
+  urgentTasks?: Observable<Task[]>;
+  nonUrgentTasks?: Observable<Task[]>;
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {
-    this.taskService.getUrgentTasks().subscribe(urgentTasks => {this.urgentTasks = urgentTasks});
-    this.taskService.getNonUrgentTasks().subscribe(nonUrgentTasks => {this.nonUrgentTasks = nonUrgentTasks});
-    console.log(this.nonUrgentTasks);
-    console.log(this.urgentTasks);
+    this.urgentTasks = this.getUrgentTasks();
+    this.nonUrgentTasks = this.getNonUrgentTasks();
+  }
+
+  getUrgentTasks(): Observable<Task[]> {
+    return this.taskService.getUrgentTasks();
+  }
+
+  getNonUrgentTasks(): Observable<Task[]> {
+    return this.taskService.getNonUrgentTasks();
   }
 
   setTaskAsDone(task: Task) {
