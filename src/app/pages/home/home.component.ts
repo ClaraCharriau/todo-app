@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
 import { TaskService } from 'src/app/services/task/task.service';
 import { Task } from 'src/app/task';
 
@@ -10,46 +9,21 @@ import { Task } from 'src/app/task';
 })
 export class HomeComponent {
 
-  todoList!: Task[];
-
-  nonUrgentTaskExists: boolean = false;
-  urgentTaskExists: boolean = false;
+  urgentTasks?: Task[];
+  nonUrgentTasks?: Task[];
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {
-    this.taskService.getToDos().subscribe(todoList => this.todoList = todoList);
-    if(!this.todoList) return
-    this.checkTasksPriority(this.todoList);
-  }
-
-  getToDoList() {
-    return this.taskService.getUnDoneTasks().subscribe(todoList => this.todoList = todoList);
-  }
-
-  checkTasksPriority(todoList: Task[]) {
-    if(!this.todoList) return
-    if(todoList.map(item => item.isUrgent).includes(true)) {
-      this.urgentTaskExists = true;
-    } else {
-      this.urgentTaskExists = false;
-    }
-    if(todoList.map(item => item.isUrgent).includes(false)) {
-      this.nonUrgentTaskExists = true;
-    } else {
-      this.nonUrgentTaskExists = false;
-    }
+    this.taskService.getUrgentTasks().subscribe(urgentTasks => {this.urgentTasks = urgentTasks});
+    this.taskService.getNonUrgentTasks().subscribe(nonUrgentTasks => {this.nonUrgentTasks = nonUrgentTasks});
+    console.log(this.nonUrgentTasks);
+    console.log(this.urgentTasks);
   }
 
   setTaskAsDone(task: Task) {
     this.taskService.setAsDone(task);
-    this.taskService.getToDos().subscribe(todoList => this.todoList = todoList);
-    this.checkTasksPriority(this.todoList);
   }
 
-  filterCategories(tasklist : Task[]) {
-    this.todoList = tasklist;
-    this.checkTasksPriority(this.todoList)
-  }
 
 }

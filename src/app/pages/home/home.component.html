@@ -1,14 +1,12 @@
 <section>
 
-    <app-filter (changeCategory)="filterCategories($event)"></app-filter>
-
-<div class="fade-animation" *ngIf="todoList.length > 0; else emptyToDoList">
+<div class="fade-animation" *ngIf="urgentTasks && urgentTasks.length > 0 ; else emptyToDoList">
 
     <!-- Tâches urgentes -->
-    <p *ngIf="this.urgentTaskExists">⚠️ Tâches urgentes</p>
+    <p *ngIf="urgentTasks && urgentTasks.length > 0">⚠️ Tâches urgentes</p>
     <ul>
-        <ng-container *ngFor="let task of todoList">
-            <li *ngIf="task.isUrgent">
+        <ng-container *ngFor="let task of urgentTasks">
+            <li *ngIf="urgentTasks && urgentTasks.length > 0 && task.isUrgent">
                 <button (click)="setTaskAsDone(task)"></button>
                 <a routerLink="/update-task/{{task.id}}">
                     {{task.category! | categoryEmoji}}
@@ -19,10 +17,10 @@
     </ul>
 
     <!-- Tâches non-urgentes -->
-    <p *ngIf="this.nonUrgentTaskExists">🌸 Autres tâches</p>
+    <p *ngIf="nonUrgentTasks && nonUrgentTasks.length > 0">🌸 Autres tâches</p>
     <ul>
-        <ng-container *ngFor="let task of todoList">
-            <li *ngIf="!task.isUrgent">
+        <ng-container *ngFor="let task of nonUrgentTasks">
+            <li *ngIf="nonUrgentTasks && nonUrgentTasks.length > 0 && !task.isUrgent">
                 <button (click)="setTaskAsDone(task)"></button>
                 <a routerLink="/update-task/{{task.id}}">
                     {{task.category! | categoryEmoji}}

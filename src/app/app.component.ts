@@ -10,7 +10,6 @@ import { Task } from 'src/app/task';
 })
 export class AppComponent {
   title = environment.title;
-  todoList?: Task[];
 
   constructor(private taskService: TaskService) {}
 

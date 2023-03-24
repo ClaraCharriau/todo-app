@@ -15,6 +15,39 @@ export class TaskService {
   constructor(private httpClient: HttpClient) { }
 
   /* 
+  GET
+  **/
+  getToDos(): Observable<Task[]> {
+    return this.httpClient.get<Task[]>(this.url + this.endpoint);
+  }
+  getTaskById(id: number): Observable<Task> {
+    return this.getToDos().pipe(
+      map((items: any[]) => items.find((item: { id: number; }) => item.id === id)),
+    );
+  }
+  getDoneTasks(): Observable<Task[]> {
+    return this.getToDos().pipe(
+      map((items: any[]) => items.filter((task: { doneDate: null; }) => task.doneDate !== null)),
+    );
+  }
+  getUnDoneTasks(): Observable<Task[]> {
+    return this.getToDos().pipe(
+      map((items: any[]) => items.filter((task: { doneDate: null; }) => task.doneDate === null)),
+    );
+  }
+  getUrgentTasks(): Observable<Task[]> {
+    return this.getToDos().pipe(
+      map((items: any[]) => items.filter((task: { doneDate: null; }) => task.doneDate !== null)),
+    );
+  }
+  getNonUrgentTasks(): Observable<Task[]> {
+    return this.getToDos().pipe(
+      map((items: any[]) => items.filter((task: { isUrgent: boolean; }) => task.isUrgent === false)),
+    );
+  }
+
+
+  /* 
   CREATE
   **/
   createNewTask(): Task {
@@ -67,28 +100,6 @@ export class TaskService {
     currentTask.doneDate = null;
     this.deleteTask(id!);
     this.addToList(currentTask);
-  }
-
-  /* 
-  GET
-  **/
-  getToDos(): Observable<Task[]> {
-    return this.httpClient.get<Task[]>(this.url + this.endpoint);
-  }
-  getTaskById(id: number): Observable<Task> {
-    return this.getToDos().pipe(
-      map((items: any[]) => items.find((item: { id: number; }) => item.id === id)),
-    );
-  }
-  getDoneTasks() {
-    return this.getToDos().pipe(
-      map((items: any[]) => items.filter((task: { doneDate: null; }) => task.doneDate !== null)),
-    );
-  }
-  getUnDoneTasks() {
-    return this.getToDos().pipe(
-      map((items: any[]) => items.filter((task: { doneDate: null; }) => task.doneDate === null)),
-    );
   }
 
   /*
