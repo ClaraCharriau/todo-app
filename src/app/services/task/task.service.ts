@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { CategoryType, Task } from 'src/app/task';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
+import { v4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  readonly url = "http://localhost:8080"
+  errorMessage: any;
 
-  readonly endpoint = "/todolist"
+  url: string = "http://localhost:8080/todolist";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -18,11 +19,11 @@ export class TaskService {
   GET
   **/
   getToDos(): Observable<Task[]> {
-    return this.httpClient.get<Task[]>(this.url.toString() + this.endpoint.toString());
+    return this.httpClient.get<Task[]>(`${this.url}`)
   }
 
   getTaskById(id: number): Observable<Task> {
-    return this.httpClient.get<Task>(this.url.toString() + this.endpoint.toString() + `${id}`);
+    return this.httpClient.get<Task>(`${this.url}/${id}`);
   }
 
   // DONE
@@ -64,28 +65,27 @@ export class TaskService {
 
   }
   addToList(newTask: Task) {
-    newTask.id = this.generateId();
-    console.log(newTask.id);
-    this.httpClient.post<Task>(this.url.toString() + this.endpoint.toString(), newTask);
+    let uuid = v4();
+    newTask.id = +uuid;
+    this.httpClient.post<Task>(`${this.url}`, newTask).subscribe({
+      error: error => {
+          this.errorMessage = error.message;
+          console.error('There was an error during post!', error);
+      }
+  })
   }
 
-  getTodoLength(): number {
-    this.getToDos().pipe(map((array: Task[]) => Array.length))
-    return 
-  }
-  
-
-  generateId(): number {
-    let todolistlength = 0;
-    todolistlength = 
-    return todolistlength > 0 ? todolistlength + 1 : 1;
-  }
 
   /* 
   UPDATE
   **/
-  updateTask(updatedTask: Task): Observable<Task> {
-    return this.httpClient.patch<Task>(this.url.toString() + this.endpoint.toString(), updatedTask);
+  updateTask(updatedTask: Task): void {    
+    this.httpClient.patch<Task>(`${this.url}/${updatedTask.id}`, updatedTask).subscribe({
+      error: error => {
+          this.errorMessage = error.message;
+          console.error('There was an error during update!', error);
+      }
+  })
   }
 
   changeTaskCategory(currentTask: Task, categorySelected: string): void {
@@ -104,25 +104,20 @@ export class TaskService {
   }
 
   setAsDone(currentTask: Task) {
-    const id = currentTask.id;
-    this.deleteTask(id!);
     currentTask.doneDate = new Date();
-    this.addToList(currentTask);
+    this.updateTask(currentTask);
   }
 
   setAsUndone(currentTask: Task) {
-    const id = currentTask.id;
     currentTask.doneDate = null;
-    this.deleteTask(id!);
-    this.addToList(currentTask);
+    this.updateTask(currentTask);
   }
 
   /*
   DELETE
   **/
   deleteTask(taskId: number): Observable<void> {
-    console.log('supprimer ' + taskId);
-    return this.httpClient.delete<void>(this.url.toString() + this.endpoint.toString() + `/`+ taskId.toString());
+    return this.httpClient.delete<void>(`${this.url}` + taskId.toString());
   }
 
 }

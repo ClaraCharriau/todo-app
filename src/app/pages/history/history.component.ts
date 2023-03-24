@@ -24,6 +24,7 @@ export class HistoryComponent {
 
   setTaskUndone(task: Task) {
     this.taskService.setAsUndone(task);
+    this.historyList = this.getDoneList();
   }
 
 }

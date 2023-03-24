@@ -30,6 +30,8 @@ export class HomeComponent {
 
   setTaskAsDone(task: Task) {
     this.taskService.setAsDone(task);
+    this.urgentTasks = this.getUrgentTasks();
+    this.nonUrgentTasks = this.getNonUrgentTasks();
   }
 
 

@@ -13,10 +13,4 @@ export class AppComponent {
 
   constructor(private taskService: TaskService) {}
 
-  ngOnInit() {
-    this.taskService.getToDos();
-    this.taskService.getToDos().subscribe((next) => {
-      console.log(next);
-    });
-  }
 }

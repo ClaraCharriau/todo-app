@@ -49,3 +49,8 @@ a {
 .history-svg-active, .history-svg:hover {
     background-color: var(--lila);
 }
+
+.feather {
+    color: red;
+    width: 500px;
+}
