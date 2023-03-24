@@ -25,7 +25,7 @@ export class FilterComponent {
     this.changeCategory.emit(this.todoList);
 
     if (category === "all") {
-      this.todoList = this.taskService.getToDos();
+      this.todoList = this.taskService.getUnDoneTasks();
       this.changeCategory.emit(this.todoList);
     }
   }
