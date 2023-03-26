@@ -18,14 +18,14 @@ export class FilterComponent {
   constructor(private taskService: TaskService) { }
 
   filterCategory(category: string) {
-    this.todoList = this.taskService.getToDos();
+    this.todoList = this.taskService.getUnDoneTasks();
     this.todoList = this.todoList.filter((task: any) => {
       return task.category === category;
     })
     this.changeCategory.emit(this.todoList);
 
     if (category === "all") {
-      this.todoList = this.taskService.getToDos();
+      this.todoList = this.taskService.getUnDoneTasks();
       this.changeCategory.emit(this.todoList);
     }
   }
