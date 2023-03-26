@@ -4,7 +4,7 @@
         <p>Sélectionnez votre catégorie :</p>
         <div class="all-categories-input">
             <div class="radio-category-container" *ngFor="let category of categoryType">
-                <input class="input-category" name="category" type="radio" id="{{category}}" (click)="chooseCategory(category)" [checked]="category === currentTask?.category">
+                <input class="input-category" name="category" type="radio" id="{{category}}" (click)="chooseCategory(category)" value="{{category}}" [checked]="category === currentTask?.category">
                 <label class="label-category" name="category" for="{{category}}">{{category | categoryEmoji}}</label>
             </div>
         </div>

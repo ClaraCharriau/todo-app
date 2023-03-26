@@ -66,6 +66,24 @@ body {
     align-items: center;
     border-radius: 25px;
 }
+
 .blue-button:disabled {
     opacity: 0.5;
+}
+
+/* ANIMATION */
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+router-outlet+* {
+    display: block;
+    /* Change display inline to block */
+    animation: fade 0.3s;
 }
