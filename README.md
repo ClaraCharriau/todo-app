@@ -1,5 +1,10 @@
 # TodoApp
 
+<img src="repository/assets/read-me-img/miniature-readme.jpg" alt="miniature-todo-app" height="60" width="60">
+
+
+# Environment
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.2.
 
 ## Development server
