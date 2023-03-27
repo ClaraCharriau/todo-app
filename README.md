@@ -1,8 +1,6 @@
-# To do App
-
 ![miniature-readme](https://user-images.githubusercontent.com/101406252/228045062-076d1b46-0381-4453-b7dd-230e1aa84b52.jpg)
 
-### 📝 A simple todo Application
+# 📝 Todo Application
 
 Users will find their todo list on a homepage, displayed according to their priority, it's also possible to filter according to the tasks categories.
 The users can create new tasks by clicking on the "+" button. When tasks are done, clicking on them transfer them to the history list. A task can be modified by clicking on them on the home page.
@@ -54,7 +52,7 @@ The backend of the application can be found here : (...)
 
 The design of the application was proposed by our instructor during our Angular course at Simplon.
 
-# Environment
+## Environment
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.2.
 
