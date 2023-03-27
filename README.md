@@ -1,44 +1,58 @@
 # To do App
 
-![miniature-readme](https://user-images.githubusercontent.com/101406252/227781630-cef1775c-e6f8-40c2-b213-3a452aa273a8.jpg)
+![miniature-readme](https://user-images.githubusercontent.com/101406252/228045062-076d1b46-0381-4453-b7dd-230e1aa84b52.jpg)
 
-### A simple todo Application.
+### 📝 A simple todo Application
 
 Users will find their todo list on a homepage, displayed according to their priority, it's also possible to filter according to the tasks categories.
-The users can create new tasks by clicking on the "+" button. When tasks are done, clicking on them transfer them to the history list. A task can be modified by click on them on the home page.
+The users can create new tasks by clicking on the "+" button. When tasks are done, clicking on them transfer them to the history list. A task can be modified by clicking on them on the home page.
 
-### Homepage
+### Testing the app : https://clara-to-do-app.netlify.app
 
-The browser will search for existing todo's in the local storage. The todo are sorted and displayed according to their priority thanks to Angular's *ngIf and *ngFor directives. If there is no task, a button suggest to create a new one.
+### 📍 Homepage
+
+The browser will search for existing todo's in his **LocalStorage**. The todo are sorted and displayed according to their priority thanks to **Angular's ngIf and ngFor directives**. If there is no task, a button suggest to create a new one.
 
 By clicking on a task, the user can modify it. Clicking on the checkbox’s task sends it to the history.
 
-The category’s emojis are displayed through a custom pipe.
+The category’s emojis are displayed through a **custom pipe**.
 
-On the top of the page, users can filter tasks by categories.
+On the top of the page, users can filter tasks by categories with **filter()** method.
 
-### Task creation & modification 
+### 📍 Task creation & modification 
 
-To optimize the number of components, the form that create and modify tasks is the same. This component is reused on the "creation" page where it creates a new task and on the "modification" page where it allows to modify the task thanks to the navigation by parameter in the url.
+To optimize the number of components, the form that create and modify tasks is the same. This component is reused on the "creation" page where it creates a new task and on the "modification" page where it allows to modify the task thanks to the **navigation by parameter** in the url.
 
-The button stays disabled if the category isn’t selected or if the content remains empty.
+The button stays disabled if the category isn’t selected or if the content remains empty. The style of the button changes according to the Angular attribute **[disabled]**.
 
-By clicking on the button, the current task is sent to the browser’s local storage.
+By clicking on the button, the current task is sent to the browser’s **LocalStorage**.
 
-### History
+### 📍 Task JSON structure
 
-Once a task is done, it keeps its date of completion and is arranged in chronological order in the history page. If there is no task, a button suggest to create a new one.
+```json
+    {
+        "id": "0464c4ee-9f34-492a-bc6f-f105ca841c30",
+        "content": "responds to urgent emails",
+        "category": "work",
+        "urgent": true,
+        "doneDate": "2023-03-24T10:39:28.977Z"
+    }
+```
+
+### 📍 History
+
+Once a task is done, it keeps its date of completion in 'doneDate' and is arranged in chronological order in the history page. If there is no task, a button suggest to create a new one.
 
 Clicking on a task returns it to the homepage. 
 
-### API connexion
+### 📍 API connexion
 
-On the main branch of this project, the tasks are stored in the browser's localstorage. On the test/api branch, the Task service sends HTTP requests to a REST API and can retrieve tasks from a database.
+On the main branch of this project, the tasks are stored in the browser's localstorage. On the `test/api` branch, the Task service sends HTTP requests to a REST API and can retrieve tasks from a database.
+The backend of the application can be found here : (...)
 
-### UI
+### 📍 UI
 
 The design of the application was proposed by our instructor during our Angular course at Simplon.
-
 
 # Environment
 
