@@ -9,7 +9,7 @@
     <ul>
         <ng-container *ngFor="let task of todoList">
             <li *ngIf="task.isUrgent">
-                <button (click)="setTaskAsDone(task)"></button>
+                <button class="empty-checkbox" (click)="setTaskAsDone(task)"><svg class="feather feather-check" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></button>
                 <a routerLink="/update-task/{{task.id}}">
                     {{task.category! | categoryEmoji}}
                     {{task.content}}
@@ -23,7 +23,7 @@
     <ul>
         <ng-container *ngFor="let task of todoList">
             <li *ngIf="!task.isUrgent">
-                <button (click)="setTaskAsDone(task)"></button>
+                <button class="empty-checkbox" (click)="setTaskAsDone(task)"><svg class="feather feather-check" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></button>
                 <a routerLink="/update-task/{{task.id}}">
                     {{task.category! | categoryEmoji}}
                     {{task.content}}

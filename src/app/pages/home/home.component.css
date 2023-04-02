@@ -34,6 +34,22 @@ p {
     align-items: center;
 }
 
+.empty-checkbox:hover {
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.empty-checkbox:hover>.feather {
+    transition: all 0.2s;
+    color: white;
+}
+
+.feather {
+    width: 24px;
+    color: var(--darkblue);
+    transition: all 0.2s;
+}
+
 /* ANIMATION */
 @keyframes fade {
     0% {
