@@ -87,3 +87,7 @@ router-outlet+* {
     /* Change display inline to block */
     animation: fade 0.3s;
 }
+
+ng-container {
+    animation: fade 0.3s;
+}

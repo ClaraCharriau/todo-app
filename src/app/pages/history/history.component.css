@@ -15,6 +15,9 @@ button {
     align-items: center;
     margin-top: -2px;
 }
+button:hover {
+    cursor: pointer;
+}
 
 li {
     display: flex;
@@ -28,6 +31,9 @@ p {
 
 .feather-check {
     width: 24px;
+}
+.feather-check:hover {
+    color: var(--darkblue);
 }
 
 .empty-history {
