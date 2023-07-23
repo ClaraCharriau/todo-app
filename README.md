@@ -5,7 +5,7 @@
 Users will find their todo list on a homepage, displayed according to their priority, it's also possible to filter according to the tasks categories.
 The users can create new tasks by clicking on the "+" button. When tasks are done, clicking on them transfer them to the history list. A task can be modified by clicking on them on the home page.
 
-### Testing the app : https://clara-to-do-app.netlify.app
+### Production : https://clara-to-do-app.netlify.app
 
 ### 📍 Homepage
 
@@ -46,7 +46,7 @@ Clicking on a task returns it to the homepage.
 ### 📍 API connexion
 
 On the main branch of this project, the tasks are stored in the browser's localstorage. On the `test/api` branch, the Task service sends HTTP requests to a REST API and can retrieve tasks from a database.
-The backend of the application can be found here : (...)
+The backend of the application can be found here : https://github.com/ClaraCharriau/todo-app-service
 
 ### 📍 UI
 
