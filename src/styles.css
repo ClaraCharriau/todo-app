@@ -71,6 +71,10 @@ body {
     opacity: 0.5;
 }
 
+.blue-button:hover {
+    cursor: pointer;
+}
+
 /* ANIMATION */
 @keyframes fade {
     0% {

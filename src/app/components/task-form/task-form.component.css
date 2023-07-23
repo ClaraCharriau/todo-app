@@ -13,7 +13,7 @@ p {
 /* CONTENT INPUT */
 textarea {
     width: 85%;
-    height: 180px;
+    height: 120px;
     resize: none;
     font-family: var(--quicksand);
     font-weight: 600;
